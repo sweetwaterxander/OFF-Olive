@@ -179,7 +179,12 @@ class _BackIcon extends StatelessWidget {
     return SearchBarIcon(
       icon: Icon(ConstantIcons.instance.getBackIcon()),
       label: MaterialLocalizations.of(context).closeButtonTooltip,
-      onTap: () => Navigator.of(context).pop(),
+      onTap: () {
+        // Only pop if we can
+        if (Navigator.of(context).canPop()) {
+          Navigator.of(context).pop();
+        }
+      },
     );
   }
 }

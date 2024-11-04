@@ -11,7 +11,6 @@ import 'package:smooth_app/generic_lib/widgets/smooth_card.dart';
 import 'package:smooth_app/knowledge_panel/knowledge_panels/knowledge_panel_expanded_card.dart';
 import 'package:smooth_app/knowledge_panel/knowledge_panels_builder.dart';
 import 'package:smooth_app/pages/product/common/product_refresher.dart';
-import 'package:smooth_app/pages/scan/carousel/scan_carousel_manager.dart';
 import 'package:smooth_app/widgets/smooth_app_bar.dart';
 import 'package:smooth_app/widgets/smooth_scaffold.dart';
 
@@ -102,8 +101,7 @@ class _KnowledgePanelPageState extends State<KnowledgePanelPage>
 
   Future<void> _refreshProduct(BuildContext context) async {
     try {
-      final String? barcode =
-          ExternalScanCarouselManager.read(context).currentBarcode;
+      final String? barcode = widget.product.barcode;
       if (barcode?.isEmpty == true) {
         return;
       }

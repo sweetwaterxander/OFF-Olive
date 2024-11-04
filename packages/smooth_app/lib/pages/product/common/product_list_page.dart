@@ -37,6 +37,8 @@ import 'package:smooth_app/widgets/smooth_app_bar.dart';
 import 'package:smooth_app/widgets/smooth_menu_button.dart';
 import 'package:smooth_app/widgets/smooth_scaffold.dart';
 import 'package:smooth_app/widgets/will_pop_scope.dart';
+import 'package:smooth_app/pages/search/search_page.dart';
+import 'package:smooth_app/pages/search/search_product_helper.dart';
 
 /// Displays the products of a product list, with access to other lists.
 class ProductListPage extends StatefulWidget {
@@ -137,8 +139,9 @@ class _ProductListPageState extends State<ProductListPage>
             ? FloatingActionButton.extended(
                 icon: const Icon(CupertinoIcons.barcode),
                 label: Text(appLocalizations.product_list_empty_title),
-                onPressed: () =>
-                    ExternalScanCarouselManager.read(context).showSearchCard(),
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SearchPage(SearchProductHelper()),
+                )),
               )
             : _selectionMode
                 ? null

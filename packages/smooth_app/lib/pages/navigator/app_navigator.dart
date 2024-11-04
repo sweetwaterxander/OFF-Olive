@@ -17,7 +17,6 @@ import 'package:smooth_app/pages/product/add_new_product_page.dart';
 import 'package:smooth_app/pages/product/edit_product_page.dart';
 import 'package:smooth_app/pages/product/product_loader_page.dart';
 import 'package:smooth_app/pages/product/product_page/new_product_page.dart';
-import 'package:smooth_app/pages/scan/carousel/scan_carousel_manager.dart';
 import 'package:smooth_app/pages/search/search_page.dart';
 import 'package:smooth_app/pages/search/search_product_helper.dart';
 import 'package:smooth_app/pages/user_management/sign_up_page.dart';
@@ -151,18 +150,12 @@ class _SmoothGoRouter {
                   throw Exception('No product provided!');
                 }
 
-                final Widget widget = ProductPage(
+                return ProductPage(
                   product,
                   withHeroAnimation:
                       state.uri.queryParameters['heroAnimation'] != 'false',
                   heroTag: state.uri.queryParameters['heroTag'],
                 );
-
-                if (ExternalScanCarouselManager.find(context) == null) {
-                  return ExternalScanCarouselManager(child: widget);
-                } else {
-                  return widget;
-                }
               },
             ),
             GoRoute(

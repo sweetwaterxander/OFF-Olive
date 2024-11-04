@@ -11,7 +11,6 @@ import 'package:smooth_app/pages/onboarding/sample_eco_card_page.dart';
 import 'package:smooth_app/pages/onboarding/sample_health_card_page.dart';
 import 'package:smooth_app/pages/onboarding/welcome_page.dart';
 import 'package:smooth_app/pages/page_manager.dart';
-import 'package:smooth_app/pages/scan/carousel/scan_carousel_manager.dart';
 import 'package:smooth_app/widgets/smooth_scaffold.dart';
 import 'package:smooth_app/widgets/will_pop_scope.dart';
 
@@ -105,7 +104,7 @@ enum OnboardingPage {
           ConsentAnalyticsPage(backgroundColor),
         );
       case OnboardingPage.ONBOARDING_COMPLETE:
-        return ExternalScanCarouselManager(child: PageManager());
+        return PageManager();
     }
   }
 

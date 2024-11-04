@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_app/pages/history_page.dart';
 import 'package:smooth_app/pages/map_page.dart';
-import 'package:smooth_app/pages/search_page.dart';
 import 'package:smooth_app/pages/page_manager.dart';
 import 'package:smooth_app/pages/preferences/user_preferences_page.dart';
 import 'package:smooth_app/pages/scan/scan_page.dart';
+import 'package:smooth_app/pages/search/search_page.dart';
+import 'package:smooth_app/pages/search/search_product_helper.dart';
 
 class TabNavigator extends StatelessWidget {
   const TabNavigator({
@@ -17,33 +18,32 @@ class TabNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget child;
-
-    switch (tabItem) {
-      case BottomNavigationTab.History:
-        child = const HistoryPage();
-        break;
-      case BottomNavigationTab.Search:
-        child = const SearchPage();
-        break;
-      case BottomNavigationTab.Scan:
-        child = const ScanPage();
-        break;
-      case BottomNavigationTab.Map:
-        child = const MapPage();
-        break;
-      case BottomNavigationTab.Profile:
-        child = const UserPreferencesPage();
-        break;
-    }
-
     return Navigator(
       key: navigatorKey,
+      initialRoute: '/',
       onGenerateRoute: (RouteSettings routeSettings) {
-        return MaterialPageRoute<dynamic>(
-          builder: (BuildContext context) => child,
+        return MaterialPageRoute<void>(
+          builder: (BuildContext context) => _buildBody(context),
+          settings: const RouteSettings(name: '/'),
         );
       },
     );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    switch (tabItem) {
+      case BottomNavigationTab.History:
+        return const HistoryPage();
+      case BottomNavigationTab.Search:
+        return SearchPage(SearchProductHelper());
+      case BottomNavigationTab.Scan:
+        return const ScanPage();
+      case BottomNavigationTab.Map:
+        return const MapPage();
+      case BottomNavigationTab.Profile:
+        return const UserPreferencesPage();
+      default:
+        return const SizedBox.shrink();
+    }
   }
 }

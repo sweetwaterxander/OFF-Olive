@@ -67,12 +67,6 @@ class PageManagerState extends State<PageManager> {
   @override
   Widget build(BuildContext context) {
     final AppLocalizations appLocalizations = AppLocalizations.of(context);
-    final ExternalScanCarouselManagerState carouselManager =
-        ExternalScanCarouselManager.watch(context);
-
-    if (carouselManager.forceShowScannerTab) {
-      _currentPage = BottomNavigationTab.Scan;
-    }
 
     final List<Widget> tabs = <Widget>[
       _buildOffstageNavigator(BottomNavigationTab.History),
@@ -102,7 +96,7 @@ class PageManagerState extends State<PageManager> {
         onTap: (int index) {
           if (_currentPage == BottomNavigationTab.Scan &&
               _pageKeys[index] == BottomNavigationTab.Scan) {
-            carouselManager.showSearchCard();
+            // carouselManager.showSearchCard();
           }
 
           _selectTab(_pageKeys[index], index);
