@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_app/pages/history_page.dart';
+import 'package:smooth_app/pages/map_page.dart';
+import 'package:smooth_app/pages/search_page.dart';
 import 'package:smooth_app/pages/page_manager.dart';
 import 'package:smooth_app/pages/preferences/user_preferences_page.dart';
 import 'package:smooth_app/pages/scan/scan_page.dart';
@@ -18,14 +20,20 @@ class TabNavigator extends StatelessWidget {
     final Widget child;
 
     switch (tabItem) {
-      case BottomNavigationTab.Profile:
-        child = const UserPreferencesPage();
-        break;
-      case BottomNavigationTab.List:
+      case BottomNavigationTab.History:
         child = const HistoryPage();
+        break;
+      case BottomNavigationTab.Search:
+        child = const SearchPage();
         break;
       case BottomNavigationTab.Scan:
         child = const ScanPage();
+        break;
+      case BottomNavigationTab.Map:
+        child = const MapPage();
+        break;
+      case BottomNavigationTab.Profile:
+        child = const UserPreferencesPage();
         break;
     }
 

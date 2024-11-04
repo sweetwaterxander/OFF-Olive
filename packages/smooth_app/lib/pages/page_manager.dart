@@ -8,9 +8,11 @@ import 'package:smooth_app/widgets/tab_navigator.dart';
 import 'package:smooth_app/widgets/will_pop_scope.dart';
 
 enum BottomNavigationTab {
-  Profile,
+  History,  // Renamed from List
+  Search,   // New
   Scan,
-  List,
+  Map,      // New
+  Profile,
 }
 
 /// Here the different tabs in the bottom navigation bar are taken care of,
@@ -26,16 +28,19 @@ class PageManager extends StatefulWidget {
 
 class PageManagerState extends State<PageManager> {
   static const List<BottomNavigationTab> _pageKeys = <BottomNavigationTab>[
-    BottomNavigationTab.Profile,
-    BottomNavigationTab.Scan,
-    BottomNavigationTab.List,
+  BottomNavigationTab.History,
+  BottomNavigationTab.Search,
+  BottomNavigationTab.Scan,
+  BottomNavigationTab.Map,
+  BottomNavigationTab.Profile,
   ];
 
-  final Map<BottomNavigationTab, GlobalKey<NavigatorState>> _navigatorKeys =
-      <BottomNavigationTab, GlobalKey<NavigatorState>>{
-    BottomNavigationTab.Profile: GlobalKey<NavigatorState>(),
+  final Map<BottomNavigationTab, GlobalKey<NavigatorState>> _navigatorKeys = {
+    BottomNavigationTab.History: GlobalKey<NavigatorState>(),
+    BottomNavigationTab.Search: GlobalKey<NavigatorState>(),
     BottomNavigationTab.Scan: GlobalKey<NavigatorState>(),
-    BottomNavigationTab.List: GlobalKey<NavigatorState>(),
+    BottomNavigationTab.Map: GlobalKey<NavigatorState>(),
+    BottomNavigationTab.Profile: GlobalKey<NavigatorState>(),
   };
 
   BottomNavigationTab _currentPage = BottomNavigationTab.Scan;
@@ -70,9 +75,11 @@ class PageManagerState extends State<PageManager> {
     }
 
     final List<Widget> tabs = <Widget>[
-      _buildOffstageNavigator(BottomNavigationTab.Profile),
+      _buildOffstageNavigator(BottomNavigationTab.History),
+      _buildOffstageNavigator(BottomNavigationTab.Search),
       _buildOffstageNavigator(BottomNavigationTab.Scan),
-      _buildOffstageNavigator(BottomNavigationTab.List),
+      _buildOffstageNavigator(BottomNavigationTab.Map),
+      _buildOffstageNavigator(BottomNavigationTab.Profile),
     ];
 
     final UserPreferences userPreferences = context.watch<UserPreferences>();
@@ -91,6 +98,7 @@ class PageManagerState extends State<PageManager> {
         ],
       ),
       child: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         onTap: (int index) {
           if (_currentPage == BottomNavigationTab.Scan &&
               _pageKeys[index] == BottomNavigationTab.Scan) {
@@ -102,16 +110,24 @@ class PageManagerState extends State<PageManager> {
         currentIndex: _currentPage.index,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: const Icon(Icons.account_circle),
-            label: appLocalizations.profile_navbar_label,
+            icon: const Icon(Icons.history),
+            label: appLocalizations.history_navbar_label,
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.search),
+            label: appLocalizations.search_navbar_label,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.camera_alt, size: 32),
             label: appLocalizations.scan_navbar_label,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.list),
-            label: appLocalizations.list_navbar_label,
+            icon: const Icon(Icons.map),
+            label: appLocalizations.map_navbar_label,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.account_circle),
+            label: appLocalizations.profile_navbar_label,
           ),
         ],
       ),

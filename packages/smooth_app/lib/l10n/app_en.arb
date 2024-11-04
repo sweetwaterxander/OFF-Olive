@@ -474,6 +474,14 @@
     "@list_navbar_label": {
         "description": "BottomNavigationBarLabel: For the lists"
     },
+      "search_navbar_label": "Search",
+    "@search_navbar_label": {
+    "description": "Label for the search tab in bottom navigation"
+    },
+    "map_navbar_label": "Map",
+    "@map_navbar_label": {
+        "description": "Label for the map tab in bottom navigation"
+    },
     "category": "Filter by category",
     "@category": {
         "description": "From a product list, there's a category filter: this is its title"
