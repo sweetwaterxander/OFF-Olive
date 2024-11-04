@@ -1,3 +1,25 @@
+# 0.0 -- Running this repo locally for Xander
+    cd packages/smooth_app
+    flutter pub get
+    cd ios
+    pod install
+    cd ..
+
+Open XCode by running:
+open ios/Runner.xcworkspace
+
+Then run:
+    flutter clean
+    flutter pub get
+
+Open Simulator:
+    open -a Simulator
+
+Run the app:
+    flutter run -t lib/entrypoints/ios/main_ios.dart
+
+DONE (XANDER)
+
 # Open Food Facts - Flutter App - Release Guide
 
 Welcome to the release guide for the Open Food Facts Flutter App. Below are the steps to guide you through our 2 weeks release process.
